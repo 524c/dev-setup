@@ -2999,10 +2999,10 @@ alias egrep='/opt/homebrew/bin/ggrep --color=auto --exclude-dir={.bzr,CVS,.git,.
 
 export PATH=/opt/homebrew/bin:/opt/homebrew/opt/curl/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
-#export PYENV_ROOT="$HOME/.pyenv"
-#eval "$(pyenv init --path)"
-#eval "$(pyenv virtualenv-init -)"
-#alias venv='pyenv local'
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+alias venv='pyenv local'
 
 MYIPS_ONLY_IPV4=1
 
