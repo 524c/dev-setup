@@ -26,7 +26,7 @@ function install_apps() {
     fi
   done
 
-  brew install coreutils binutils diffutils gawk gnutls screen tmux watch wget curl gpatch m4 make gcc vim nano file-formula git less openssh perl python3 rsync zsh ffmpeg ed findutils wdiff grep gnu-indent gnu-sed gnu-tar unzip gzip xz gnu-which fswatch fsevents-tools readline lsusb fsevents-tools openssl brotli base64 mkcert redis htop btop go tanka jsonnet-bundler readline pyenv pyenv-virtualenv pgcli jq multipass tldr kubectl kubecolor tcpdump > /dev/null 2>&1
+  brew install coreutils binutils diffutils gawk gnutls screen tmux watch wget curl gpatch m4 make gcc vim nano file-formula git less openssh perl python3 rsync zsh ffmpeg ed findutils wdiff grep gnu-indent gnu-sed gnu-tar unzip gzip xz gnu-which fswatch lsusb fsevents-tools openssl brotli base64 mkcert redis htop btop go tanka jsonnet-bundler readline pyenv pyenv-virtualenv pgcli jq multipass tldr kubectl kubecolor tcpdump > /dev/null 2>&1
 }
 
 function update_sudoers() {
