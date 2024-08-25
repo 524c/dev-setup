@@ -1,5 +1,25 @@
 #!/usr/bin/env bash
 
+function update_sudoers() {
+  if ! sudo grep -q "^%admin.*NOPASSWD" /etc/sudoers; then
+    if sudo grep -q "^%admin.*ALL" /etc/sudoers; then
+	    if sed --version 2>&1 | grep -q "GNU"; then
+	      sudo sed -i 's/^%admin.*ALL/%admin ALL=(ALL) NOPASSWD:ALL/' /etc/sudoers
+	    else
+	      sudo sed -i '' 's/^%admin.*ALL/%admin ALL=(ALL) NOPASSWD:ALL/' /etc/sudoers
+	    fi
+	  elif sudo grep -q "^#.*%admin.*NOPASSWD" /etc/sudoers; then
+	    if sed --version 2>&1 | grep -q "GNU"; then
+	      sudo sed -i 's/^#.*%admin.*NOPASSWD/%admin ALL=(ALL) NOPASSWD:ALL/' /etc/sudoers
+	    else
+	      sudo sed -i '' 's/^#.*%admin.*NOPASSWD/%admin ALL=(ALL) NOPASSWD:ALL/' /etc/sudoers
+	    fi
+	  else
+      echo "%admin ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers > /dev/null
+	  fi
+	fi
+}
+
 function install_apps() {
   brew update > /dev/null 2>&1
   echo "installing packages..."
@@ -29,24 +49,10 @@ function install_apps() {
   brew install coreutils binutils diffutils gawk gnutls screen tmux watch wget curl gpatch m4 make gcc vim nano file-formula git less openssh perl python3 rsync zsh ffmpeg ed findutils wdiff grep gnu-indent gnu-sed gnu-tar unzip gzip xz gnu-which fswatch lsusb fsevents-tools openssl brotli base64 mkcert redis htop btop go tanka jsonnet-bundler readline pyenv pyenv-virtualenv pgcli jq multipass tldr kubectl kubecolor tcpdump > /dev/null 2>&1
 }
 
-function update_sudoers() {
-  if ! sudo grep -q "^%admin.*NOPASSWD" /etc/sudoers; then
-    if sudo grep -q "^%admin.*ALL" /etc/sudoers; then
-	    if sed --version 2>&1 | grep -q "GNU"; then
-	      sudo sed -i 's/^%admin.*ALL/%admin ALL=(ALL) NOPASSWD:ALL/' /etc/sudoers
-	    else
-	      sudo sed -i '' 's/^%admin.*ALL/%admin ALL=(ALL) NOPASSWD:ALL/' /etc/sudoers
-	    fi
-	  elif sudo grep -q "^#.*%admin.*NOPASSWD" /etc/sudoers; then
-	    if sed --version 2>&1 | grep -q "GNU"; then
-	      sudo sed -i 's/^#.*%admin.*NOPASSWD/%admin ALL=(ALL) NOPASSWD:ALL/' /etc/sudoers
-	    else
-	      sudo sed -i '' 's/^#.*%admin.*NOPASSWD/%admin ALL=(ALL) NOPASSWD:ALL/' /etc/sudoers
-	    fi
-	  else
-      echo "%admin ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers > /dev/null
-	  fi
-	fi
+function install_fonts() {
+  brew tap homebrew/linux-fonts > /dev/null 2>&1 # for other font options
+	
+	curl -s "https://raw.githubusercontent.com/524c/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf" -o "/Library/Fonts/MesloLGS NF Regular.ttf"
 }
 
 function setup_iterm2() {
@@ -2887,12 +2893,6 @@ imap <C-a> <Home>
 " set formatoptions-=c formatoptions-=r formatoptions-=o
 EOF
 sudo cp ~/.vimrc /var/root/
-}
-
-function install_fonts() {
-  brew tap homebrew/linux-fonts > /dev/null 2>&1 # for other font options
-	
-	curl -s "https://raw.githubusercontent.com/524c/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf" -o "/Library/Fonts/MesloLGS NF Regular.ttf"
 }
 
 function setup_zsh() {
