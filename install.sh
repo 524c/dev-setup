@@ -4748,7 +4748,7 @@ EOF
 export PATH=/usr/local/bin:/usr/local/sbin:/opt/homebrew/opt/curl/bin:/bin:/sbin:/usr/bin:/usr/sbin:/opt/homebrew/bin
 
 [[ $(uname) == "Darwin" ]] || {
-  echo "This script is only for macOS"
+  echo "This script is for macOS only."
   exit 1
 }
 
