@@ -3,6 +3,6 @@ For macOS for now. Soon I will make the adjustments to work on Linux.
 
 ### Basic Installation
 
-Devboost is installed by running othe following commands in your terminal.
+Dev-setup is installed by running othe following commands in your terminal.
 
-`bash -c "$(curl -fsSL https://raw.githubusercontent.com/524c/devboost/main/install.sh)"`
+`bash -c "$(curl -fsSL https://raw.githubusercontent.com/524c/dev-setup/main/install.sh)"`
