@@ -51,7 +51,7 @@ function install_apps() {
 
 function install_fonts() {
   brew tap homebrew/linux-fonts > /dev/null 2>&1 # for other font options
-	
+
 	curl -s "https://raw.githubusercontent.com/524c/powerlevel10k-media/master/MesloLGS%20NF%20Regular.ttf" -o "/Library/Fonts/MesloLGS NF Regular.ttf"
 }
 
@@ -3016,21 +3016,21 @@ function myips() {
 		[[ $iface == "lo"* ]] && continue
 
     ipv4=$(ifconfig "$iface" | grep 'inet ' | awk '{print $2}')
-  
+
     if [[ -n $ipv4 ]]; then
       echo "$iface (IPv4): $ipv4"
     fi
-  
+
 		if [[ $MYIPS_ONLY_IPV4 -eq 1 ]] && [[ $SHOW_IPV6 -eq 0 ]]; then
 			continue
 		fi
 
-		ipv6=$(ifconfig "$iface" | grep 'inet6 ' | awk '{printf "%s ", $2}')  
+		ipv6=$(ifconfig "$iface" | grep 'inet6 ' | awk '{printf "%s ", $2}')
     if [[ -n $ipv6 ]]; then
       echo "$iface (IPv6): ${ipv6% }"
     fi
   done
-  
+
   echo "public ip: $(extip)"
 }
 
@@ -4786,3 +4786,4 @@ setup_iterm2
 
 echo -e "\nQuit Terminal and reopen it to apply the changes.\n"
 touch ~/.dev-setup/.dev-setup
+##
