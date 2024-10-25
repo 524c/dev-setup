@@ -3039,6 +3039,11 @@ export LANG=en_US.UTF-8
 export EDITOR='vim'
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+for file in ~/.dev-setup/*.zsh; do
+	[[ -e $file ]] || continue
+	source $file
+done
 EOF
 }
 
@@ -4757,6 +4762,13 @@ export PATH=/usr/local/bin:/usr/local/sbin:/opt/homebrew/opt/curl/bin:/bin:/sbin
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 }
 
+option=$1
+if [[ $option != "--reinstall" ]] &&  [[ -f ~/.dev-setup/.dev-setup ]]; then
+	echo "The dev-setup has already been installed. Do you want to reinstall it? [y/n]"
+	read -r redo
+	[[ $redo == "y" ]] || exit 0
+fi
+
 update_sudoers
 install_apps
 install_fonts
@@ -4773,3 +4785,4 @@ setup_iterm2
 }
 
 echo -e "\nQuit Terminal and reopen it to apply the changes.\n"
+touch ~/.dev-setup/.dev-setup
