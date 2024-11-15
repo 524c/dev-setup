@@ -1,8 +1,8 @@
-This script is a bootstrap for a development environment, which installs and configures basic resources, such as tools and a ZSH shell setup, with essential add-ons.
-For macOS for now. Soon I will make the adjustments to work on Linux.
+This script sets up a basic development environment, installing tools and configuring a ZSH shell with essential add-ons.
+Currently supports macOS only. Linux support is coming soon.
+
+Installation
+Run the following command in your terminal:
 
 ### Basic Installation
-
-Dev-setup is installed by running othe following commands in your terminal.
-
 `bash -c "$(curl -fsSL https://raw.githubusercontent.com/524c/dev-setup/main/install.sh)"`
